@@ -23,7 +23,7 @@ public class Example {
 		// Get the document of the XML and assign to Document object
 		theXML = fromUrl("http://www.iii.co.uk/rss/news/cotn%3aAAU.L.xml");
 
-		// Place the root element of theXML into a variable
+		// Fetch the RSS items from theXML using XPath query
 		List<? extends Node> items = (List<? extends Node>) theXML
 				.selectNodes("//rss/channel/item");
 
