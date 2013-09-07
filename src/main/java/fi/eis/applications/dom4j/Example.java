@@ -37,7 +37,7 @@ public class Example {
 		for (Node node : items) {
 			String pubDate = node.valueOf("pubDate");
 			DateTime date = new DateTime(dateFormatterRssPubDate.parse(pubDate));
-			if ((date).isAfter(timeTodayStartedAt)) {
+			if (date.isAfter(timeTodayStartedAt)) {
 				// it's today, do something!
 				System.out.println("Today: " + date);
 			} else {
