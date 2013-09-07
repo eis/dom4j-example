@@ -23,10 +23,17 @@
         	<artifactId>dom4j</artifactId>
         	<version>1.6.1</version>
         </dependency>
-		<dependency><!-- needed by dom4j for xpath support -->
+		<dependency>
 		    <groupId>jaxen</groupId>
 		    <artifactId>jaxen</artifactId>
 		    <version>1.1.4</version>
+		<!--
+			Jaxen is needed by dom4j for xpath support.
+			without it, you'll get
+			Exception in thread "main" java.lang.NoClassDefFoundError:
+			org/jaxen/JaxenException
+			when using XPath
+		-->
 		</dependency>
 		<dependency>
 		    <groupId>joda-time</groupId>
