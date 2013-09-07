@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fi.eis.applications</groupId>
+	<artifactId>dom4j-examples</artifactId>
+	<name>dom4j-examples</name>
+	<packaging>jar</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<properties>
+		<java-version>1.6</java-version>
+		<org.springframework-version>3.1.0.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.6.9</org.aspectj-version>
+		<org.slf4j-version>1.5.10</org.slf4j-version>
+		<!--  run integration tests with 'mvn verify -DskipITs=false' -->
+		<skipITs>true</skipITs>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+	<dependencies>
+        <dependency>
+        	<groupId>dom4j</groupId>
+        	<artifactId>dom4j</artifactId>
+        	<version>1.6.1</version>
+        </dependency>
+		<dependency><!-- needed by dom4j for xpath support -->
+		    <groupId>jaxen</groupId>
+		    <artifactId>jaxen</artifactId>
+		    <version>1.1.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>joda-time</groupId>
+		    <artifactId>joda-time</artifactId>
+		    <version>2.3</version>
+		</dependency>		
+		
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-failsafe-plugin</artifactId>
+			  <version>2.12.3</version>
+			  <executions>
+			    <execution>
+			      <goals>
+			        <goal>integration-test</goal>
+			        <goal>verify</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			  <configuration>
+			    <skipITs>${skipITs}</skipITs>
+			  </configuration>
+			</plugin>
+			<plugin>
+		 	  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-assembly-plugin</artifactId>
+			  <version>2.4</version>
+			  <configuration>
+			    <archive>
+			      <manifest>
+			        <mainClass>fi.eis.applications.dom4j.Example</mainClass>
+			      </manifest>
+			    </archive>
+			    <descriptorRefs>
+			      <descriptorRef>jar-with-dependencies</descriptorRef>
+			    </descriptorRefs>
+			  </configuration>
+			  <executions>
+			    <execution>
+			      <id>make-assembly</id> <!-- this is used for inheritance merges -->
+			      <phase>package</phase> <!-- bind to the packaging phase -->
+			      <goals>
+			        <goal>single</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>			
+        </plugins>
+    </build>
+</project>
